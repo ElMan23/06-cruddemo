@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,6 +61,7 @@ public class EmployeeRestController {
 	}
 	
 	// Expoose POST "/employees" for adding a new employee
+	@PostMapping("/employees")
 	public Employee addEmployee(@RequestBody Employee employee) {
 		
 		// Set the ID to 0 to force the insert instead of the update
@@ -68,5 +71,16 @@ public class EmployeeRestController {
 		return employee;
 		
 	}
+	
+	// Expose PUT "/employees" for updating an employee
+	@PutMapping("/employees")
+	public Employee updateEmployee(@RequestBody Employee employee) {
+		
+		employeeService.save(employee);
+		
+		return employee;
+	}
+	
+	// Expose DELETE "/employees/{employeeId}" to delete an employee
 	
 }
