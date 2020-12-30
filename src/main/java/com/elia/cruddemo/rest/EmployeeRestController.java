@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +37,7 @@ public class EmployeeRestController {
 	// Controller methods
 	//
 	
-	// Expose "/employees" and return the list of employees
+	// Expose GET "/employees" and return the list of employees
 	@GetMapping("/employees")
 	public List<Employee> findAll() {
 	
@@ -44,12 +45,28 @@ public class EmployeeRestController {
 	
 	}
 	
-	// Expose "/employees/{employeeId}" and return the employee
+	// Expose GET "/employees/{employeeId}" and return the employee
 	@GetMapping("/employees/{employeeId}")
 	public Employee getEmployee(@PathVariable int employeeId) {
 	
-		return employeeService.findById(employeeId);
+		Employee employee = employeeService.findById(employeeId);
 	
+		if (employee == null)
+			throw new RuntimeException("Employee ID " + employeeId + " not found!");
+		
+		return employee;
+		
+	}
+	
+	// Expoose POST "/employees/{employeeId}" for adding a new employee
+	public Employee addEmployee(@RequestBody Employee employee) {
+		
+		// Set the ID to 0 to force the insert instead of the update
+		employee.setId(0);
+		employeeService.save(employee);
+		
+		return employee;
+		
 	}
 	
 }
