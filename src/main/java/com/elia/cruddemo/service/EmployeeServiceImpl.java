@@ -38,6 +38,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee employee = null;
 		if (result.isPresent())
 			employee = result.get();
+		else
+			throw new RuntimeException("Did not find the Employee with ID " + id);
 		
 		return employee;
 		
