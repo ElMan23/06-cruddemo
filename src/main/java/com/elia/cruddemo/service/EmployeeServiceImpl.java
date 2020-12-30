@@ -22,7 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	@Transactional
 	public List<Employee> findAll() {
 		
 		return employeeRepository.findAll();
@@ -30,7 +29,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional
 	public Employee findById(int id) {
 
 		return employeeRepository.findById(id);
@@ -38,7 +36,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional
 	public void save(Employee employee) {
 
 		employeeRepository.save(employee);
@@ -46,7 +43,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional
 	public void deleteById(int id) {
 
 		employeeRepository.deleteById(id);
