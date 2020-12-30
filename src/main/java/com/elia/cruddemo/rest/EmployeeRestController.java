@@ -58,7 +58,7 @@ public class EmployeeRestController {
 		
 	}
 	
-	// Expoose POST "/employees/{employeeId}" for adding a new employee
+	// Expoose POST "/employees" for adding a new employee
 	public Employee addEmployee(@RequestBody Employee employee) {
 		
 		// Set the ID to 0 to force the insert instead of the update
