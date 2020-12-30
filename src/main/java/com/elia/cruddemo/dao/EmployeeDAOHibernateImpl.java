@@ -61,6 +61,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 		
 		// Return the result
 		return employee;
+	
 	}
 
 	@Override
