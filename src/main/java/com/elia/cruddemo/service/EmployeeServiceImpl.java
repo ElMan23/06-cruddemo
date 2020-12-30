@@ -3,22 +3,21 @@ package com.elia.cruddemo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.elia.cruddemo.dao.EmployeeDAO;
+import com.elia.cruddemo.dao.EmployeeRepository;
 import com.elia.cruddemo.entity.Employee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-	private EmployeeDAO employeeDAO;
+	private EmployeeRepository employeeRepository;
 	
 	@Autowired
-	public EmployeeServiceImpl(@Qualifier("employeeDAOJPAImpl") EmployeeDAO employeeDAO) {
+	public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
 		
-		this.employeeDAO = employeeDAO;
+		this.employeeRepository = employeeRepository;
 		
 	}
 	
@@ -26,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public List<Employee> findAll() {
 		
-		return employeeDAO.findAll();
+		return employeeRepository.findAll();
 		
 	}
 
@@ -34,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public Employee findById(int id) {
 
-		return employeeDAO.findById(id);
+		return employeeRepository.findById(id);
 		
 	}
 
@@ -42,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public void save(Employee employee) {
 
-		employeeDAO.save(employee);
+		employeeRepository.save(employee);
 		
 	}
 
@@ -50,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public void deleteById(int id) {
 
-		employeeDAO.deleteById(id);
+		employeeRepository.deleteById(id);
 		
 	}
 
