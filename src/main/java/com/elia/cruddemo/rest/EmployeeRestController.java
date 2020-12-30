@@ -82,5 +82,17 @@ public class EmployeeRestController {
 	}
 	
 	// Expose DELETE "/employees/{employeeId}" to delete an employee
+	@PutMapping("/employees")
+	public String deleteEmployee(@PathVariable int employeeId) {
+		
+		Employee employee = employeeService.findById(employeeId);
+		
+		if (employee == null)
+			throw new RuntimeException("Employee ID " + employeeId + " not found!");
+		
+		employeeService.deleteById(employeeId);
+		
+		return "Deleted employee ID " + employeeId;
+	}
 	
 }
