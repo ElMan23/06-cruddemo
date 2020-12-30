@@ -83,7 +83,7 @@ public class EmployeeRestController {
 	}
 	
 	// Expose DELETE "/employees/{employeeId}" to delete an employee
-	@DeleteMapping("/employees")
+	@DeleteMapping("/employees/{employeeId}")
 	public String deleteEmployee(@PathVariable int employeeId) {
 		
 		Employee employee = employeeService.findById(employeeId);
